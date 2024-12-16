@@ -8,7 +8,6 @@ from sklearn.svm import SVC
 import joblib
 import streamlit as st
 
-
 # Helper Functions
 def extract_mfcc_features(audio_path, n_mfcc=13, n_fft=2048, hop_length=512):
     """
@@ -30,6 +29,11 @@ def create_dataset(directory, label):
     """
     X, y = [], []
     audio_files = glob.glob(os.path.join(directory, "*.wav"))
+    if not audio_files:
+        st.error(f"No .wav files found in directory: {directory}")
+    else:
+        st.write(f"Processing {len(audio_files)} files from {directory}")
+
     for audio_path in audio_files:
         mfcc_features = extract_mfcc_features(audio_path)
         if mfcc_features is not None:
@@ -81,13 +85,12 @@ def analyze_audio(input_audio_path):
     prediction = svm_classifier.predict(mfcc_features_scaled)
 
     if prediction[0] == 0:
-        return "The input audio is classified as genuine📈."
+        return "The input audio is classified as genuine 📈."
     else:
-        return "The input audio is classified as deepfake ☠, Be Safe️."
-
+        return "The input audio is classified as deepfake ☠️, Be Safe."
 
 # Streamlit UI
-st.title("🎙️ Audio Deepfake Detection Tool")
+st.title("🎹 Audio Deepfake Detection Tool")
 st.sidebar.title("⚙️ Options")
 
 # Training Section
@@ -97,8 +100,8 @@ if st.sidebar.checkbox("Train Model"):
 
     if st.button("Train"):
         # Predefined directories for genuine and deepfake audio files
-        genuine_dir = "deepfake_audio_detection/data/real/"
-        deepfake_dir = "deepfake_audio_detection/data/fake/"
+        genuine_dir = "C:/Users/mani chourasiya/Downloads/real"
+        deepfake_dir = "C:/Users/mani chourasiya/Downloads/fake"
 
         X_genuine, y_genuine = create_dataset(genuine_dir, label=0)
         X_deepfake, y_deepfake = create_dataset(deepfake_dir, label=1)
