@@ -1,4 +1,4 @@
-#In the ever-evolving digital world, deepfakes are becoming increasingly sophisticated and pose serious threats across various industries. To address this, I worked on developing an **Audio Deepfake Detection Tool** that can classify audio files as **genuine or deepfake** with remarkable accuracy! 🚀  
+**In the ever-evolving digital world, deepfakes are becoming increasingly sophisticated and pose serious threats across various industries. To address this, I worked on developing an **Audio Deepfake Detection Tool** that can classify audio files as **genuine or deepfake** with remarkable accuracy! 🚀**  
 
 🔗 **Key Features:**  
 - Extracts **MFCC (Mel Frequency Cepstral Coefficients)** features for audio analysis.  
